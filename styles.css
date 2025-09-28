@@ -84,6 +84,23 @@ footer, .footer {
 }
 
 /* =============================
+   Sección Nosotros
+   ============================= */
+#nosotros .row {
+    align-items: center;
+    min-height: 300px;
+}
+#nosotros .col-md-8 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#nosotros .section-title,
+#nosotros p {
+    text-align: left;
+}
+
+/* =============================
    Responsive
    ============================= */
 @media (max-width: 768px) {
