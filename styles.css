@@ -1,0 +1,96 @@
+/* =============================
+   Estilos generales del sitio
+   ============================= */
+body {
+    font-family: 'Bangers', cursive, Arial, sans-serif;
+    background: #1a1a2e;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =============================
+   Navbar y Footer
+   ============================= */
+.navbar, .footer {
+    background: #0f3460;
+}
+
+.logo-text {
+    font-size: 2rem;
+    color: #e94560;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 #fff700, 4px 4px 0 #16213e;
+}
+
+/* =============================
+   Imagen principal (Hero)
+   ============================= */
+.hero-img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px #0f3460;
+}
+
+/* =============================
+   Títulos de sección
+   ============================= */
+.section-title {
+    color: #fff700;
+    text-shadow: 2px 2px 0 #e94560;
+    margin-bottom: 1rem;
+}
+
+/* =============================
+   Tarjetas de productos
+   ============================= */
+.product-card {
+    background: #16213e;
+    border: 2px solid #e94560;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px #0f3460;
+    transition: transform 0.2s;
+    width: 180px;
+}
+.product-card:hover {
+    transform: scale(1.03);
+    border-color: #fff700;
+}
+
+/* =============================
+   Footer
+   ============================= */
+footer, .footer {
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* =============================
+   Iconos sociales
+   ============================= */
+.social-icon {
+    color: #fff700;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+.social-icon:hover {
+    color: #e94560;
+}
+
+/* =============================
+   Responsive
+   ============================= */
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 1.3rem;
+    }
+    .hero-img {
+        max-height: 200px;
+    }
+}
