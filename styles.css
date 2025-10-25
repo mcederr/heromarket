@@ -111,3 +111,99 @@ footer, .footer {
         max-height: 200px;
     }
 }
+
+/* =============================
+   Estilos para Promociones
+   ============================= */
+/*
+  Las reglas siguientes definen estilos para la página de promociones:
+  - .promo-card: contenedores con fondo y borde consistene con la paleta general
+  - .promo-form: entradas del formulario (select, input)
+  - .results-panel: panel que muestra totales y descuentos
+  - Ajustes para el botón .btn-warning para mantener contraste y visibilidad
+*/
+.promo-card {
+    background: linear-gradient(180deg,#16213e,#0f2040);
+    border: 2px solid #e94560;
+    border-radius: 0.8rem;
+}
+.promo-form .form-control, .promo-form .form-select {
+    border-radius: 0.5rem;
+}
+
+.results-panel {
+    /* Panel semitransparente para resaltar totales sin romper la paleta oscura */
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(233,69,96,0.15);
+}
+.lead {
+    /* Texto introductorio - heredado de Bootstrap pero asegurando un color consistente */
+    color: #fff;
+}
+
+/* Botón amarillo personalizado para mantener contraste con el fondo oscuro */
+.btn-warning {
+    background: #fff700;
+    border-color: #fff700;
+    color: #0f2040;
+}
+.btn-warning:hover {
+    background: #ffd700;
+}
+
+/* =============================
+   Ajustes para controles de carrusel
+   Evita que las flechas (prev/next) queden encima de la primera tarjeta
+   y permita el hover sobre las tarjetas. Mueve ligeramente los controles
+   hacia afuera y asegura que el contenedor permita overflow visible.
+*/
+.carousel {
+    position: relative;
+    overflow: visible; /* permite que los controles se muestren fuera del área interior */
+}
+.carousel .carousel-control-prev,
+.carousel .carousel-control-next {
+    width: 2.6rem;
+    height: 2.6rem;
+    top: 50%;
+    /* mover usando translate para evitar problemas con offsets que queden fuera del flujo */
+    transform: translateY(-50%) translateX(0%);
+    background: rgba(255,255,255,0.06); /* fondo claro y translúcido para destacar sobre el fondo oscuro */
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* asegurar que estén por encima de las tarjetas */
+}
+/* colocamos los controles en los bordes del carrusel y los desplazamos hacia afuera con translateX */
+.carousel .carousel-control-prev { left: 0; transform: translateY(-50%) translateX(-60%); }
+.carousel .carousel-control-next { right: 0; transform: translateY(-50%) translateX(60%); }
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+    /* Usamos un SVG blanco en data-uri para asegurar íconos claros sobre fondo oscuro */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.2rem 1.2rem;
+    filter: none;
+}
+
+/* SVG blanco para la flecha (prev). El siguiente reutiliza el mismo y rota 180deg. */
+.carousel .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 16 16'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L6.707 7l4.647 4.646a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z'/></svg>");
+}
+.carousel .carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 16 16'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L6.707 7l4.647 4.646a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z'/></svg>");
+    transform: rotate(180deg);
+}
+
+.carousel .carousel-control-prev:hover,
+.carousel .carousel-control-next:hover {
+    background: rgba(255,255,255,0.16);
+}
+@media (max-width: 576px) {
+    /* En pantallas pequeñas reducimos el desplazamiento para mantener usabilidad */
+    .carousel .carousel-control-prev { transform: translateY(-50%) translateX(-20%); }
+    .carousel .carousel-control-next { transform: translateY(-50%) translateX(20%); }
+}
+

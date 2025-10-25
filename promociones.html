@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Promociones - HeroMarket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+                        <circle cx="32" cy="32" r="30" fill="#fff700" stroke="#e94560" stroke-width="4"/>
+                        <text x="32" y="40" text-anchor="middle" font-size="32" fill="#e94560" font-family="Bangers, Arial">H</text>
+                    </svg>
+                    <span class="ms-2 logo-text">HeroMarket</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="products.html">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="promociones.html">Promociones</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <h2 class="section-title">Promociones Vigentes</h2>
+
+        <p class="lead">Elegí productos y cantidades en el carrito. El sistema calculará el total, el descuento y el total final. Seleccioná "Mejor promoción" para que el sistema aplique el ahorro mayor automáticamente.</p>
+
+        <section class="row">
+            <div class="col-md-5">
+                <div class="promo-card p-3 mb-4">
+                    <h4>Productos</h4>
+                    <form id="add-form" class="promo-form mb-3" aria-label="Agregar producto al carrito">
+                        <label for="product-select" class="form-label">Producto</label>
+                        <select id="product-select" class="form-select mb-2" aria-label="Seleccionar producto"></select>
+
+                        <label for="qty-input" class="form-label">Cantidad <small class="text-muted">(máx. 5 por producto)</small></label>
+                        <input id="qty-input" type="number" class="form-control mb-2" min="1" max="5" value="1" />
+                        <div id="qty-feedback" class="form-text text-warning" style="display:none;">El máximo por producto es 5 unidades. Se ajustará al límite si es necesario.</div>
+
+                        <div class="d-grid gap-2">
+                            <button id="add-btn" type="button" class="btn btn-warning">Agregar al carrito</button>
+                        </div>
+                    </form>
+
+                    <!-- La aplicación de promociones es siempre automática: se aplicará la mejor promoción disponible -->
+                    <div class="mt-3">
+                        <p class="small text-muted">Las promociones se aplican automáticamente seleccionando la opción que genere mayor ahorro.</p>
+                        <!-- Panel comparativo de promociones -->
+                        <div class="promo-compare mt-3 p-2" aria-live="polite">
+                            <h6>Comparativa de promociones</h6>
+                            <ul class="list-group" id="promo-compare-list">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Llevá 2 - 50% en el segundo</span>
+                                    <span class="badge bg-secondary" id="compare-promoA">$0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>3x2 en productos seleccionados</span>
+                                    <span class="badge bg-secondary" id="compare-promoB">$0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>10% por > $30.000</span>
+                                    <span class="badge bg-secondary" id="compare-promoC">$0</span>
+                                </li>
+                            </ul>
+                            <div class="mt-2">
+                                <small id="best-recommendation" class="text-success"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="promo-card p-3 mb-4">
+                    <h4>Carrito</h4>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped" id="cart-table" aria-label="Carrito de compras">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- filas dinámicas -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="results-panel mt-3 p-3 rounded">
+                        <h5>Resumen</h5>
+                        <p id="total-before">Total sin descuento: $0</p>
+                        <p id="discount-applied">Descuento: $0</p>
+                        <p id="total-final" class="fs-4">Total final: $0</p>
+                        <p id="promo-message" class="text-warning small"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div>© 2024 HeroMarket. Todos los derechos reservados.</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="promociones.js"></script>
+</body>
+</html>
